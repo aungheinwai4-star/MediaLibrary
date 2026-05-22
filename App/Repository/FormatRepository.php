@@ -1,10 +1,10 @@
 <?php
 
-/**
- * Handles database operations related to formats,
- * categories, and genres using PDO.
- */
+namespace App\Repository;
 
+use App\Contract\FormatRepositoryInterface;
+
+use PDO;
 class FormatRepository implements FormatRepositoryInterface
 {
     private PDO $db;

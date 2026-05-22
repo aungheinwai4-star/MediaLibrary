@@ -1,9 +1,12 @@
 <?php
 
-/**
- * Handles format-related business logic and manages
- * communication between controllers and repositories.
- */
+namespace App\Service;
+
+use App\Contract\FormatRepositoryInterface;
+
+use App\Repository\FormatRepository;
+
+use Database;
 
 class FormatService
 {

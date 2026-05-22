@@ -4,7 +4,9 @@
  * Handles displaying detailed information
  * for a single catalog item.
  */
+namespace App\Controller;
 
+use App\Service\CatalogService;
 class DetailsController
 {
     private CatalogService $catalogService;
@@ -28,7 +30,7 @@ class DetailsController
         }
 
         // Get item data from service
-        $item = $this->catalogService->single_item_array($id);
+$item = $this->catalogService->getSingleItem($id);
 
         // Redirect if item does not exist
         if (empty($item)) {

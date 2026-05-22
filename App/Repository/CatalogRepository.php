@@ -1,9 +1,10 @@
 <?php
 
-/**
- * Handles catalog database operations using PDO
- * and communicates with stored procedures.
- */
+namespace App\Repository;
+
+use App\Contract\CatalogRepositoryInterface;
+
+use PDO;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
@@ -63,7 +64,6 @@ class CatalogRepository implements CatalogRepositoryInterface
         $catalog = $result->fetchAll();
 
         $result->closeCursor();
-
         return $catalog;
     }
 
@@ -130,7 +130,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         $result = $this->db->query(" SELECT * FROM view_random ");
 
         $catalog = $result->fetchAll();
-
+        // var_dump($catalog);
         return $catalog;
     }
 

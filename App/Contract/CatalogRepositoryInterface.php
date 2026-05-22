@@ -1,10 +1,6 @@
 <?php
 
-/**
- * Defines methods for retrieving catalog data
- * from the data source.
- */
-
+namespace App\Contract;
 interface CatalogRepositoryInterface
 {
     // Get total catalog item count

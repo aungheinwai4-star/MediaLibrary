@@ -1,5 +1,11 @@
-<?php require BASE_PATH . '/view/layout/header.php';
-    require_once BASE_PATH . '/inc/CustomPath.php'; ?>
+<?php 
+
+require BASE_PATH . '/view/layout/header.php';
+
+require_once BASE_PATH . '/inc/CustomPath.php'; 
+
+use View\ItemView;
+?>
 
 
 <main class="wrapper">

@@ -1,25 +1,26 @@
 
 <?php
-/**
- * Main application entry point.
- * Initializes dependencies, services, and application routing.
- */
-/*
-//Report simple running errors
-error_reporting(E_ALL);
-//Make sure they are on screen
-ini_set('display_errors',1);
-//HTML formatted errors
-ini_set('html_errors',1);
-        OR
-use @ in front of error
-*/
-define('BASE_PATH', dirname(__DIR__));
 
+use App\Controller\ApiCatalogController;
+use App\Controller\ApiDetailsController;
+use App\Controller\CatalogController;
+use App\Controller\DetailsController;
+use App\Controller\SuggestController;
+
+use App\Repository\CatalogRepository;
+use App\Repository\FormatRepository;
+
+use App\Service\CatalogService;
+use App\Service\FormatService;
+
+define('BASE_PATH', dirname(__DIR__));//project directory name(path)(untill MVC)
+
+// loading fles
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once BASE_PATH . '/inc/Database.php';
 require_once BASE_PATH . '/inc/CustomPath.php';
 
+//loading environment variables for .env
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -37,8 +38,12 @@ $catalogService = new CatalogService($catalogRepo);
 $formatService  = new FormatService($formatRepo);
 
 /*ROUTING */
-
+//if url has page use it
+//otherwise use home
 $page = $_GET['page'] ?? 'home';
+
+//manual resourcebundle_get_error_code
+//decide which controller/method should run
 
 switch ($page) {
 

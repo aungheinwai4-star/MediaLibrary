@@ -1,29 +1,37 @@
-<?php require BASE_PATH . '/view/layout/header.php'; ?>
+<?php
+
+require BASE_PATH . '/view/layout/header.php'; 
+
+use View\ItemView;
+?>
 
 <div class="section catalog page">
 	<div class="wrapper">
 
 		<h1>
-			<?php
-			if (!empty($search)) {
-				echo 'Search results for "' . htmlspecialchars($search) . '"';
+<?php
 
-				if (!empty($section)) {
-					echo ' in ' . ucfirst($section);
-				}
-			} else {
-				if (!empty($section)) {
-					echo "<a href='index.php?page=catalog'>Full Catalog</a> &gt; ";
-				}
+$isSearching = !empty($search);
+$hasSection  = !empty($section);
 
-				echo htmlspecialchars($pageTitle);
-			}
-			?>
+$title = $isSearching
+    ? 'Search results for "' . htmlspecialchars($search) . '"'
+    : htmlspecialchars($pageTitle);
+
+if ($hasSection) {
+
+    $title .= $isSearching
+        ? ' in ' . ucfirst($section)
+        : " <a href='index.php?page=catalog'>Full Catalog</a> &gt; ";
+}
+
+echo $title;
+?>
 		</h1>
 
-		<?php if ($total_items < 1): ?>
+<?php if (empty($catalog)): ?>
 
-			<?php if (!empty($section) && $found_in_full_catalog > 0): ?>
+	<?php if (!empty($section) && !empty($catalog)): ?>
 
 				<p>You are searching in the wrong section. Please check again.</p>
 

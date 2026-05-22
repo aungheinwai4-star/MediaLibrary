@@ -4,11 +4,11 @@
  * Handles media suggestion requests,
  * form validation, and email sending.
  */
-
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace App\Controller;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\Service\FormatService;
 
 class SuggestController
 {

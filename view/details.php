@@ -1,4 +1,5 @@
-<?php require BASE_PATH . '/view/Layout/header.php'; ?>
+<?php require BASE_PATH . '/view/Layout/header.php';
+ ?>
 
 <div class="section page">
     <div class="wrapper">

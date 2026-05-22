@@ -1,4 +1,6 @@
 <?php
+
+namespace View;
 class ItemView
 {
     public static function render(array $item): string
