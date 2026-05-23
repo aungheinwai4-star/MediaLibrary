@@ -21,31 +21,49 @@
             </a>
         </h1>
 
-        <!-- NAVIGATION -->
+        <!-- NAVIGATION + AUTH (single horizontal row) -->
         <ul class="nav">
             <li class="<?= ($section === 'books') ? 'on' : '' ?>">
                 <a href="<?= BASE_URL ?>/Public/index.php?page=catalog&cat=books">
-                    <img src="<?= BASE_URL ?>/img/book.png"> Books
+                    <img src="<?= BASE_URL ?>/img/book.png" alt=""> Books
                 </a>
             </li>
 
             <li class="<?= ($section === 'movies') ? 'on' : '' ?>">
                 <a href="<?= BASE_URL ?>/Public/index.php?page=catalog&cat=movies">
-                    <img src="<?= BASE_URL ?>/img/movie.png"> Movies
+                    <img src="<?= BASE_URL ?>/img/movie.png" alt=""> Movies
                 </a>
             </li>
 
             <li class="<?= ($section === 'music') ? 'on' : '' ?>">
                 <a href="<?= BASE_URL ?>/Public/index.php?page=catalog&cat=music">
-                    <img src="<?= BASE_URL ?>/img/music.png"> Music
+                    <img src="<?= BASE_URL ?>/img/music.png" alt=""> Music
                 </a>
             </li>
 
             <li class="<?= ($section === 'suggest') ? 'on' : '' ?>">
                 <a href="<?= BASE_URL ?>/Public/index.php?page=suggest">
-                    <img src="<?= BASE_URL ?>/img/suggestion.png"> Suggest
+                    <img src="<?= BASE_URL ?>/img/suggestion.png" alt=""> Suggest
                 </a>
             </li>
+
+            <?php if (!empty($_SESSION['user'])): ?>
+                <li class="nav-auth nav-user">
+                    <span class="auth-user">Hi, <?= htmlspecialchars($_SESSION['user']['name'] ?? 'User') ?></span>
+                </li>
+                <li class="nav-auth">
+                    <a class="btn-auth btn-auth-outline" href="<?= BASE_URL ?>/Public/index.php?page=logout">Logout</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-auth">
+                    <a class="btn-auth btn-auth-outline <?= ($authPage ?? '') === 'login' ? 'is-active' : '' ?>"
+                       href="<?= BASE_URL ?>/Public/index.php?page=login">Login</a>
+                </li>
+                <li class="nav-auth">
+                    <a class="btn-auth btn-auth-solid <?= ($authPage ?? '') === 'register' ? 'is-active' : '' ?>"
+                       href="<?= BASE_URL ?>/Public/index.php?page=register">Register</a>
+                </li>
+            <?php endif; ?>
         </ul>
 
     </div>

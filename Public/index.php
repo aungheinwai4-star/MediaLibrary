@@ -6,6 +6,9 @@ use App\Controller\ApiDetailsController;
 use App\Controller\CatalogController;
 use App\Controller\DetailsController;
 use App\Controller\SuggestController;
+use App\Repository\UserRepository;
+use App\Service\UserService;
+use App\Controller\UserController;
 
 use App\Repository\CatalogRepository;
 use App\Repository\FormatRepository;
@@ -37,6 +40,13 @@ $formatRepo  = new FormatRepository($db);
 $catalogService = new CatalogService($catalogRepo);
 $formatService  = new FormatService($formatRepo);
 
+session_start();
+
+/* USER SYSTEM */
+$userRepo = new UserRepository($db);
+$userService = new UserService($userRepo);
+$userController = new UserController($userService);
+
 /*ROUTING */
 //if url has page use it
 //otherwise use home
@@ -62,8 +72,30 @@ switch ($page) {
         $controller->index();
         break;
 
+    //login and register routes
+    case 'login':
+        $userController->showLogin();
+        break;
+
+    case 'register':
+        $userController->showRegister();
+        break;
+
+    case 'login-submit':
+        $userController->login();
+        break;
+
+    case 'register-submit':
+        $userController->register();
+        break;
+
+    case 'logout':
+        $userController->logout();
+        break;
+
     default: // HOME PAGE
         $controller = new CatalogController($catalogService);
         $controller->home();
+        break;
 }
 

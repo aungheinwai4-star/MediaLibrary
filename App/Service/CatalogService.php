@@ -30,7 +30,7 @@ class CatalogService
     public function getHomePageData(): array
     {
         return [
-            'random' => $this->repo->get_random_catalog(),
+            'random' => $this->repo->getRandom(),
             'pageTitle' => 'Personal Media Library',
             'section' => 'catalog'
         ];
@@ -45,7 +45,7 @@ class CatalogService
         $search = $this->getSearchTerm($queryParams);
         $currentPage = $this->getCurrentPage($queryParams);
 
-        $totalItems = $this->repo->getcatalog_count($section, $search);
+        $totalItems = $this->repo->count($section, $search);
 
         $pagination = $this->buildPagination($totalItems, $currentPage);
 
@@ -131,18 +131,18 @@ class CatalogService
         int $offset
     ): array {
         if ($search !== null && $section !== null) {
-            return $this->repo->get_search_catalog($search, $section, $limit, $offset);
+            return $this->repo->search($search, $section, $limit, $offset);
         }
 
         if ($search !== null) {
-            return $this->repo->get_search_catalog($search, null, $limit, $offset);
+            return $this->repo->search($search, null, $limit, $offset);
         }
 
         if ($section !== null) {
-            return $this->repo->get_category_catalog($section, $limit, $offset);
+            return $this->repo->getByCategory($section, $limit, $offset);
         }
 
-        return $this->repo->get_full_catalog($limit, $offset);
+        return $this->repo->getAll($limit, $offset);
     }
 
     /* =========================================================
@@ -173,7 +173,7 @@ class CatalogService
      * ========================================================= */
     public function getSingleItem(int $id): array
     {
-        return $this->repo->get_single_item($id);
+        return $this->repo->findById($id);
     }
 
 

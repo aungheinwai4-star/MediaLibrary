@@ -1,18 +1,12 @@
 <?php
 
-/**
- * Defines methods for retrieving format, category,
- * and genre data from the data source.
- */
 namespace App\Contract;
-interface FormatRepositoryInterface
+
+interface FormatRepositoryInterface extends BaseRepositoryInterface
 {
-    // Get format dropdown list
-    public function get_format_drop_down($category = null);
+    public function getFormatDropDown(?string $category = null): array;
 
-    // Get category dropdown list
-    public function get_category_drop_down();
+    public function getCategoryDropDown(): array;
 
-    // Get genres dropdown list
-    public function get_genres_drop_down($category = null);
+    public function getGenresDropDown(?string $category = null): array;
 }

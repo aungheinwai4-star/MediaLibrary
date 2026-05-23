@@ -3,74 +3,71 @@
 namespace App\Repository;
 
 use App\Contract\FormatRepositoryInterface;
-
 use PDO;
-class FormatRepository implements FormatRepositoryInterface
+
+class FormatRepository extends BaseRepository implements FormatRepositoryInterface
 {
-    private PDO $db;
-
-    public function __construct(PDO $db)
+    public function count(?string $category = null, ?string $search = null): int
     {
-        // Store database connection
-        $this->db = $db;
-    }
-
-    // Get formats based on selected category
-    function get_format_drop_down($category = null)
-    {
-        $result = $this->db->prepare(" CALL sp_get_formats_by_category (:category)");
-
-        $result->bindValue(
-            ':category',
-            $category,
-            $category === null ? PDO::PARAM_NULL : PDO::PARAM_STR
+        return (int) $this->fetchValue(
+            'CALL sp_count_formats(:search, :category)',
+            [
+                ':search' => $search,
+                ':category' => $category,
+            ]
         );
-
-        $result->execute();
-
-        $format = array();
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $format[$row["category"]][] = $row["format"];
-        }
-
-        $result->closeCursor();
-
-        return $format;
     }
 
-    // Get all unique categories
-    function get_category_drop_down()
+    public function getAll(?int $limit = null, int $offset = 0): array
     {
-        $sql = " SELECT DISTINCT category FROM view_catalog ORDER BY category";
-
-        $result = $this->db->prepare($sql);
-        $result->execute();
-
-        return $result->fetchAll(PDO::FETCH_COLUMN);
-    }
-
-    // Get genres based on selected category
-    function get_genres_drop_down($category = null)
-    {
-        $result = $this->db->prepare(" CALL sp_get_genres_by_category (:category)");
-
-        $result->bindValue(
-            ':category',
-            $category,
-            $category === null ? PDO::PARAM_NULL : PDO::PARAM_STR
+        return $this->fetchAll(
+            'CALL sp_get_all_formats(?, ?)',
+            [$limit, $offset]
         );
+    }
 
-        $result->execute();
+    public function findById(int $id): ?array
+    {
+        return $this->fetchOne(
+            'CALL sp_get_format_by_id(?)',
+            [$id]
+        );
+    }
 
-        $genre = array();
+    public function search(?string $search, ?string $category = null, ?int $limit = null, int $offset = 0): array
+    {
+        $stmt = $this->executeSP('sp_search_formats(?, ?, ?, ?)', [
+            $search,
+            $category,
+            $limit,
+            $offset,
+        ]);
 
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $genre[$row["category"]][] = $row["genre"];
-        }
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->nextRowset();
+        $stmt->closeCursor();
 
-        $result->closeCursor();
+        return $data ?: [];
+    }
 
-        return $genre;
+    public function getFormatDropDown(?string $category = null): array
+    {
+        return $this->fetchAll(
+            'CALL sp_get_format_dropdown(?)',
+            [$category]
+        );
+    }
+
+    public function getCategoryDropDown(): array
+    {
+        return $this->fetchAll('CALL sp_get_category_dropdown()');
+    }
+
+    public function getGenresDropDown(?string $category = null): array
+    {
+        return $this->fetchAll(
+            'CALL sp_get_genres_dropdown(?)',
+            [$category]
+        );
     }
 }
