@@ -8,7 +8,7 @@ use View\ItemView;
 ?>
 
 
-<main class="wrapper">
+<div class="wrapper">
     <h2 class="title">May we suggest something?</h2>
 
     <ul class="catalog">
@@ -16,6 +16,6 @@ use View\ItemView;
             <?= ItemView::render($item); ?>
         <?php endforeach; ?>
     </ul>
-</main>
+</div>
 
 <?php require BASE_PATH . '/view/layout/footer.php'; ?>

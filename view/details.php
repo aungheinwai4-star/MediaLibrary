@@ -1,5 +1,4 @@
-<?php require BASE_PATH . '/view/Layout/header.php';
- ?>
+<?php require BASE_PATH . '/view/layout/header.php'; ?>
 
 <div class="section page">
     <div class="wrapper">
@@ -40,4 +39,4 @@
     </div>
 </div>
 
-<?php require BASE_PATH . '/view/Layout/footer.php'; ?>
+<?php require BASE_PATH . '/view/layout/footer.php'; ?>

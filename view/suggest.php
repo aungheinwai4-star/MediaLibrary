@@ -1,13 +1,12 @@
-<?php require BASE_PATH . '/view/Layout/header.php'; ?>
+<?php require BASE_PATH . '/view/layout/header.php'; ?>
 
-<div class="section page">
+<div class="section page suggest-page">
     <div class="wrapper">
 
         <h1>Suggest a median items</h1>
         <br><br>
         <?php
-        if (isset($_GET["status"]) && $_GET["status"] == "thanks") 
-        {
+        if (isset($_GET["status"]) && $_GET["status"] == "thanks") {
             echo "<p>Thanks for the email! I&rsquo;ll check out your suggestion shortly!</p>";
         } else {
 
@@ -19,27 +18,19 @@
                     <p>Complete the form to send an email.</p>
                 ';
             }
-        ?>
+            ?>
             <form method="post" class="suggest-form" action="">
 
                 <div class="form-group">
                     <label for="name">Name (required)</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value="<?php if (isset($name)) echo $name; ?>"
-                    >
+                    <input type="text" id="name" name="name" value="<?php if (isset($name))
+                        echo $name; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email (required)</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        value="<?php if (isset($email)) echo $email; ?>"
-                    >
+                    <input type="text" id="email" name="email" value="<?php if (isset($email))
+                        echo $email; ?>">
                 </div>
 
                 <div class="form-group">
@@ -63,12 +54,8 @@
 
                 <div class="form-group">
                     <label for="title">Title (required)</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value="<?php if (isset($title)) echo $title; ?>"
-                    >
+                    <input type="text" id="title" name="title" value="<?php if (isset($title))
+                        echo $title; ?>">
                 </div>
 
                 <div class="form-group">
@@ -104,7 +91,6 @@
                         <?php
                         foreach ($genres as $category => $options) {
                             echo "<optgroup label=\"$category\">";
-
                             foreach ($options as $option) {
                                 echo "<option value=\"$option\"";
 
@@ -123,18 +109,15 @@
 
                 <div class="form-group">
                     <label for="year">Year</label>
-                    <input
-                        type="text"
-                        id="year"
-                        name="year"
-                        value="<?php if (isset($year)) echo $year; ?>"
-                    >
+                    <input type="text" id="year" name="year" value="<?php if (isset($year))
+                        echo $year; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="details">Additional Details</label>
                     <textarea name="details" id="details"><?php
-                        if (isset($details)) echo htmlspecialchars($_POST['details']);
+                    if (isset($details))
+                        echo htmlspecialchars($_POST['details']);
                     ?></textarea>
                 </div>
 
@@ -151,4 +134,4 @@
     </div>
 </div>
 
-<?php require BASE_PATH . '/view/Layout/footer.php'; ?>
+<?php require BASE_PATH . '/view/layout/footer.php'; ?>

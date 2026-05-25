@@ -1,13 +1,14 @@
-    </div><!-- end content -->
+</main>
 
-    <div class="footer">
-        <div class="wrapper">
+</div><!-- end content -->
 
-            <p>&copy;<?php echo date("Y"); ?> Personal Media Library</p>
-
-        </div>
+<div class="footer">
+    <div class="wrapper">
+        <p>&copy;<?php echo date("Y"); ?> Personal Media Library</p>
     </div>
+</div>
 
+</div><!-- end page-container -->
 
 </body>
 </html>

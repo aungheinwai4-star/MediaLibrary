@@ -38,13 +38,15 @@ a img {
 
 .page-container {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
 }
 
 .content {
-    flex: 1;
+    width: 100%;
+}
+
+main#content {
+    display: block;
+    width: 100%;
 }
 
 .wrapper {
@@ -65,9 +67,9 @@ a img {
 
 .section.page {
     padding-top: 50px;
-    padding-bottom: 50px;
-    min-height: 60vh;
-    
+    padding-bottom: 80px;
+    min-height: auto;
+    overflow: visible;
 }
 
 /* =========================
@@ -197,7 +199,7 @@ a img {
 
 .btn-auth-solid {
     color: #ef7d7d;
-    background: #fff;
+    background: red;
     border: 2px solid #fff;
 }
 
@@ -324,9 +326,14 @@ a img {
    FORMS
    ========================= */
 
+.suggest-page .wrapper {
+    overflow: visible;
+}
+
 .suggest-form {
     max-width: 500px;
     margin: 30px auto;
+    overflow: visible;
 }
 
 .form-group {
@@ -341,12 +348,18 @@ a img {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
+    display: block;
     width: 100%;
-    padding: 10px;
+    min-height: 42px;
+    padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
+    line-height: 1.4;
+    background: #fff;
+    appearance: auto;
 }
 
 .form-group textarea {
@@ -441,6 +454,7 @@ a img {
     margin-top: 6px;
     font-size: 15px;
     font-weight: bold;
+    
 }
 
 .auth-message {
