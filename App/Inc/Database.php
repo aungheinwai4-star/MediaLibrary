@@ -6,12 +6,12 @@ if (!defined('BASE_PATH')) {
 
 // browser path (for css, js, images)
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/MediaLibrary-MVC-');
+    define('BASE_URL', '/MVC-MediaLibrary');
 }
 class Database
 {
     private static ?PDO $connection = null;
-    private static string $host   = '127.0.0.1';
+    private static string $host   = 'localhost';
     private static string $dbname = 'database01';
     private static string $user   = 'root';
     private static string $pass   = '';

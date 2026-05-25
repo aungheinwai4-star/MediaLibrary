@@ -96,8 +96,8 @@ INSERT INTO `Media`(`title`,`img`,`genre_id`,`format`, `year`,`media_types_id`) 
 -- 5. People Role TABLE
 DROP TABLE IF EXISTS `Role`;
 CREATE TABLE `Role` (
-  `role_id` INT NOT NULL auto_increment,
-  `role` VARCHAR(6) NOT NULL, 
+  `role_id` INT NOT NULL AUTO_INCREMENT,
+  `role` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`role_id`)
 );
 
@@ -177,31 +177,3 @@ INSERT INTO `Books`(`media_id`,`publisher`,`isbn`) VALUES
 (10,'No Starch Press','9781593279509'),
 (11,'O\'Reilly','9780596007126'),
 (12,'MIT Press','9780262033848');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

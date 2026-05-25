@@ -33,7 +33,7 @@ class UserController
             return;
         }
 
-        header('Location: ' . BASE_URL . '/Public/index.php');
+        header('Location: ' . BASE_URL . '/Public/index.php?page=catalog');
         exit;
     }
 

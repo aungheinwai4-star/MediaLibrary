@@ -3,7 +3,7 @@
         'name' => 'hsumyatnoe/medialibrary',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '7d7aba88f16fe3d0c08a9a5c4dee9eb582bdc8fd',
+        'reference' => 'a774966b51d469b360cf458bbc85968ad81ea675',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'hsumyatnoe/medialibrary' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '7d7aba88f16fe3d0c08a9a5c4dee9eb582bdc8fd',
+            'reference' => 'a774966b51d469b360cf458bbc85968ad81ea675',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

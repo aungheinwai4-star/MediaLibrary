@@ -3,70 +3,47 @@
 namespace App\Repository;
 
 use App\Contract\FormatRepositoryInterface;
-use PDO;
 
 class FormatRepository extends BaseRepository implements FormatRepositoryInterface
 {
-    public function count(?string $category = null, ?string $search = null): int
-    {
-        return (int) $this->fetchValue(
-            'CALL sp_count_formats(:search, :category)',
-            [
-                ':search' => $search,
-                ':category' => $category,
-            ]
-        );
-    }
+    /* =========================
+     * PROCEDURE CONFIGURATION
+     * ========================= */
 
-    public function getAll(?int $limit = null, int $offset = 0): array
-    {
-        return $this->fetchAll(
-            'CALL sp_get_all_formats(?, ?)',
-            [$limit, $offset]
-        );
-    }
+    protected string $source = 'procedure';
 
-    public function findById(int $id): ?array
-    {
-        return $this->fetchOne(
-            'CALL sp_get_format_by_id(?)',
-            [$id]
-        );
-    }
+    protected ?string $countProcedure = 'sp_count_formats(:search, :category)';
 
-    public function search(?string $search, ?string $category = null, ?int $limit = null, int $offset = 0): array
-    {
-        $stmt = $this->executeSP('sp_search_formats(?, ?, ?, ?)', [
-            $search,
-            $category,
-            $limit,
-            $offset,
-        ]);
+    protected ?string $listProcedure = 'sp_get_all_formats(?, ?)';
 
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt->nextRowset();
-        $stmt->closeCursor();
+    protected ?string $searchProcedure = 'sp_search_formats';
 
-        return $data ?: [];
-    }
+    protected ?string $findProcedure = 'sp_get_format_by_id(?)';
+
+    /* =========================
+     * UNIQUE BUSINESS METHODS
+     * ========================= */
 
     public function getFormatDropDown(?string $category = null): array
     {
         return $this->fetchAll(
-            'CALL sp_get_format_dropdown(?)',
+            'CALL sp_get_formats_by_category(?)',
             [$category]
         );
     }
 
-    public function getCategoryDropDown(): array
+    public function getCategoryDropDown(?string $category = null): array
     {
-        return $this->fetchAll('CALL sp_get_category_dropdown()');
+        return $this->fetchAll(
+            'CALL sp_get_formats_by_category(?)',
+            [$category]
+        );
     }
 
     public function getGenresDropDown(?string $category = null): array
     {
         return $this->fetchAll(
-            'CALL sp_get_genres_dropdown(?)',
+            'CALL sp_get_genres_by_category(?)',
             [$category]
         );
     }
