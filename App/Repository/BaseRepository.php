@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Contract\BaseRepositoryInterface;
 use PDO;
+
 class BaseRepository implements BaseRepositoryInterface
 {
     protected PDO $db;

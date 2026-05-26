@@ -18,19 +18,19 @@
                     <p>Complete the form to send an email.</p>
                 ';
             }
-            ?>
+        ?>
             <form method="post" class="suggest-form" action="">
 
                 <div class="form-group">
                     <label for="name">Name (required)</label>
                     <input type="text" id="name" name="name" value="<?php if (isset($name))
-                        echo $name; ?>">
+                                                                        echo $name; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email (required)</label>
                     <input type="text" id="email" name="email" value="<?php if (isset($email))
-                        echo $email; ?>">
+                                                                            echo $email; ?>">
                 </div>
 
                 <div class="form-group">
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="title">Title (required)</label>
                     <input type="text" id="title" name="title" value="<?php if (isset($title))
-                        echo $title; ?>">
+                                                                            echo $title; ?>">
                 </div>
 
                 <div class="form-group">
@@ -110,15 +110,15 @@
                 <div class="form-group">
                     <label for="year">Year</label>
                     <input type="text" id="year" name="year" value="<?php if (isset($year))
-                        echo $year; ?>">
+                                                                        echo $year; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="details">Additional Details</label>
                     <textarea name="details" id="details"><?php
-                    if (isset($details))
-                        echo htmlspecialchars($_POST['details']);
-                    ?></textarea>
+                                                            if (isset($details))
+                                                                echo htmlspecialchars($_POST['details']);
+                                                            ?></textarea>
                 </div>
 
                 <div class="form-group" style="display:none">
